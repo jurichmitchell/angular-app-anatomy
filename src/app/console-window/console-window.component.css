@@ -1,0 +1,37 @@
+.grid-container {
+	display: grid;
+}
+.grid-item.titlebar {
+	grid-row: 1 / 2;
+	grid-column: 1 / 2;
+	background-color: rgb(32, 32, 32);
+	border-radius: 10px 10px 0px 0px;
+	color: white;
+	padding: 5px 20px 8px 30px;
+	display: flex;
+}
+.grid-item.titlebar .title {
+	font-size: 16pt;
+}
+.grid-item.titlebar .icons {
+	float: right;
+	font-size: 14pt;
+}
+.grid-item.titlebar .minimize-ico {
+	padding: 5px 20px 8px 20px;
+}
+.grid-item.titlebar .maximize-ico {
+	padding: 5px 20px 8px 20px;
+}
+.grid-item.titlebar .close-ico {
+	padding: 5px 20px 8px 20px;
+}
+.grid-item.window-text {
+	grid-row: 2 / 3;
+	grid-column: 100%;
+	background-color: rgb(12, 12, 12);
+	border-radius: 0px 0px 10px 10px;
+	color: rgb(180, 180, 220);
+	font-family: "Source Code Pro";
+	font-size: 12pt;
+}
