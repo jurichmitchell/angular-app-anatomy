@@ -1,10 +1,13 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
-import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
+
+import { HTMLSanitizer } from '../pipes/html-sanitizer';
 
 @Component({
   selector: 'app-console-window',
   standalone: true,
-  imports: [],
+  imports: [
+		HTMLSanitizer
+	],
   template: `
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 		<div class="console-window">
@@ -16,22 +19,13 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 					<div class="close-ico"><span>&#10005;</span></div>
 				</div>
 			</div>
-			<div class="window-text" [innerHTML]=windowTxt></div>
+			<div class="window-text" [innerHTML]="windowTxt | htmlSanitizer"></div>
 		</div>
   `,
   styleUrl: './console-window.component.css',
 	encapsulation: ViewEncapsulation.ShadowDom
 })
 export class ConsoleWindowComponent {
-	@Input() titleTxt!: string;
+	@Input() titleTxt: string = "";
 	@Input() windowTxt!: string;
-	sanitizer: DomSanitizer;
-
-	constructor(sanitizer: DomSanitizer) {
-		this.sanitizer = sanitizer;
-	}
-
-	sanitize(html: string) {
-		return this.sanitizer.bypassSecurityTrustHtml(html);
-	}
 }
