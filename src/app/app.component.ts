@@ -16,5 +16,10 @@ export class AppComponent {
   title = 'angular-app-anatomy';
 
 	consoleWindowTitle: string = "Creating a Component via Angular CLI";
-	consoleWindowText: string = "<p>LINE ONE</p><p>LINE TWO</p><p>LINE THREE</p>";
+	consoleWindowText: string = '<p>ng generate component [name]</p>'
+		+ '<p class="non-command-text">This command will create the necessary files for a basic Angular Component</p>'
+		+ '<p>A second command here</p>'
+		+ '<p class="non-command-text">Line 1 info</p>'
+		+ '<p class="non-command-text">Line 2 info</p>'
+		+ '<p></p>';
 }

@@ -1,0 +1,6 @@
+section.flexbox-container {
+	display: flex;
+}
+.column {
+	flex: 50%
+}

@@ -13,7 +13,7 @@ import { HTMLSanitizer } from '../pipes/html-sanitizer';
 		<div class="console-window">
 			<div class="titlebar">
 				<div class="title">{{ titleTxt }}</div>
-				<div class="icons">
+				<div class="icons" aria-hidden="true">
 					<div class="minimize-ico"><span>&#9135;</span></div>
 					<div class="maximize-ico"><span>&#9634;</span></div>
 					<div class="close-ico"><span>&#10005;</span></div>
