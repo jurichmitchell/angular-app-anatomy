@@ -45,17 +45,24 @@
 .window-text {
 	background-color: rgb(12, 12, 12);
 	border-radius: 0px 0px 10px 10px;
+}
+.window-text .command {
+	border-radius: 0px 0px 10px 10px;
 	padding: 3px 20px 5px 20px;
 	color: rgb(200, 200, 220);
 	font-family: "Source Code Pro";
 	font-size: 12pt;
 }
-.window-text .non-command-text {
-	background-color: rgb(160, 160, 160);
+.window-text .informative {
+	background-color: rgba(255, 255, 255, 0.8);
 	margin: 0px -20px;
-	padding: .5em 20px;
+	padding: .5em 20px .5em 40px;
 	color: black;
 	font-family: "Times New Roman";
+	font-size: 12pt;
+}
+.window-text .non-command-text:before {
+	content: "  | "
 }
 .window-text > *:first-child {
 	margin-top: 0em;
@@ -63,6 +70,6 @@
 .window-text > *:last-child {
 	margin-bottom: 0em;
 }
-.window-text > p:not(.non-command-text)::before {
+.window-text > p:is(.command)::before {
 	content: "> ";
 }
