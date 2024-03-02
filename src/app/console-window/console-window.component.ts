@@ -1,3 +1,7 @@
+/**
+ * @author Mitchell Jurich
+ */
+
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 import { HTMLSanitizer } from '../pipes/html-sanitizer';

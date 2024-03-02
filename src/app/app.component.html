@@ -1,11 +1,12 @@
 <h1>Angular Components</h1>
-<section class="flexbox-container">
-	<div class="column">
-		<p>Angular has components</p>
-	</div>
-	<aside class="column">
-		<app-console-window [titleTxt]="consoleWindowTitle" [windowTxt]="consoleWindowText"></app-console-window>
-		<br>
-		<app-console-window [titleTxt]="window1.getTitleText()" [windowTxt]="window1.getWindowText()"></app-console-window>
-	</aside>
-</section>
+	<p>Components are the main building blocks of an Angular application. You can think of each component as being its own custom HTML element which can be inserted into a page at will. These custom elements can even have defined Inputs which act like the element's attributes and allow you to dynamically adjust the contents of a component when using it.</p>
+	<p>Each component is comprised of its own HTML layout, CSS styling, and TypeScript code. These three parts can be self-contained across 3 separate files, or the HTML and CSS portions can be combined into the component's TypeScript (.ts) file.</p>
+	<h2>Creating a Component</h2>
+	<section class="flexbox-container">
+		<div class="column">
+			<p>The easiest way to create a component is to use the Angular CLI.</p>
+		</div>
+		<aside class="column">
+			<app-console-window [titleTxt]="window1.getTitleText()" [windowTxt]="window1.getWindowText()"></app-console-window>
+		</aside>
+	</section>
