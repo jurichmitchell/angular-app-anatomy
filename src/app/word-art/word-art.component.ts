@@ -127,12 +127,20 @@ export class WordArt {
 		const regexNumber = /^\d+/g;
 		const regexUnit = /(?<=\d)([A-Z]|[a-z])+$/g;
 		let bodyFontSize: string = window.getComputedStyle(document.body).getPropertyValue('font-size');
+		
+
 		if (includeNumber && includeUnit)
 			return bodyFontSize;
-		if (includeNumber && !includeUnit)
-			return bodyFontSize.match(regexNumber) ? bodyFontSize.match(regexNumber)![0] : "";
-		if (!includeNumber && includeUnit)
-			return bodyFontSize.match(regexUnit) ? bodyFontSize.match(regexNumber)![0] : "";
+		if (includeNumber && !includeUnit) {
+			let matchNumber = bodyFontSize.match(regexNumber);
+			let number = matchNumber ? matchNumber![0] : "";
+			return number;
+		}
+		if (!includeNumber && includeUnit) {
+			let matchUnit = bodyFontSize.match(regexUnit);
+			let unit = matchUnit ? matchUnit![0] : "";
+			return unit;
+		}
 		return "";
 	}
 }
