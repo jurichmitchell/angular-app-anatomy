@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './console-window/console-window.component';
+import { WordArt, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './word-art/word-art.component';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,7 @@ import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './console-wind
   imports: [
 		RouterOutlet
 		, ConsoleWindowComponent
+		, WordArtComponent
 	],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -32,4 +34,6 @@ export class AppComponent {
 		return;
 	}
 
+	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30);
+	
 }

@@ -29,7 +29,6 @@ import { HTMLSanitizer } from '../pipes/html-sanitizer';
   styleUrl: './console-window.component.css',
 	encapsulation: ViewEncapsulation.ShadowDom
 })
-
 export class ConsoleWindowComponent {
 	@Input() titleTxt: string = "";
 	@Input() windowTxt!: string;
