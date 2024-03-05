@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './console-window/console-window.component';
-import { WordArt, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './word-art/word-art.component';
+import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './components/content/console-window/console-window.component';
+import { WordArt, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './components/content/word-art/word-art.component';
 
 @Component({
   selector: 'app-root',

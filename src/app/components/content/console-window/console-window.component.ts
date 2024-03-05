@@ -4,7 +4,7 @@
 
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-import { HTMLSanitizer } from '../pipes/html-sanitizer';
+import { HTMLSanitizer } from '../../../pipes/html-sanitizer';
 
 @Component({
   selector: 'app-console-window',

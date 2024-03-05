@@ -9,7 +9,7 @@
 
 import { Component, Input } from '@angular/core';
 
-import { HTMLSanitizer } from '../pipes/html-sanitizer';
+import { HTMLSanitizer } from '../../../pipes/html-sanitizer';
 
 @Component({
   selector: 'app-word-art',
@@ -128,7 +128,6 @@ export class WordArt {
 		const regexUnit = /(?<=\d)([A-Z]|[a-z])+$/g;
 		let bodyFontSize: string = window.getComputedStyle(document.body).getPropertyValue('font-size');
 		
-
 		if (includeNumber && includeUnit)
 			return bodyFontSize;
 		if (includeNumber && !includeUnit) {
