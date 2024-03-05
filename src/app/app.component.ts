@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { Color } from './helpers/color';
 import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './components/content/console-window/console-window.component';
 import { WordArt, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './components/content/word-art/word-art.component';
 
@@ -34,6 +35,5 @@ export class AppComponent {
 		return;
 	}
 
-	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30);
-	
+	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30, Color.olive);
 }

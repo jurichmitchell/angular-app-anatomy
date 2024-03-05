@@ -9,6 +9,7 @@
 
 import { Component, Input } from '@angular/core';
 
+import { Color } from '../../../helpers/color';
 import { HTMLSanitizer } from '../../../pipes/html-sanitizer';
 
 @Component({
@@ -18,7 +19,7 @@ import { HTMLSanitizer } from '../../../pipes/html-sanitizer';
 		HTMLSanitizer
 	],
   template: `
-    <span [style]="layer1.getStyleString() | htmlSanitizer">{{ layer1.getText() }}</span>
+    <span [style]="layer1.toStyleString() | htmlSanitizer">{{ layer1.getText() }}</span>
   `,
   styleUrl: './word-art.component.css'
 })
@@ -57,70 +58,41 @@ export class WordArt {
 	private weight: E_FontWeight = E_FontWeight.Normal;
 	private variant: E_FontVariant = E_FontVariant.Normal;
 	private size: number = 0;
+	private color: Color;
 
-	constructor(text?: string, family?: E_FontFamily, style?: E_FontStyle, weight?: E_FontWeight, variant?: E_FontVariant, size?: number) {
+	constructor(text?: string, family?: E_FontFamily, style?: E_FontStyle, weight?: E_FontWeight, variant?: E_FontVariant, size?: number, color?: Color) {
 		this.text = text ?? "";
 		this.family = family ?? E_FontFamily.Serif;
 		this.style = style ?? E_FontStyle.Normal;
 		this.weight = weight ?? E_FontWeight.Normal;
 		this.variant = variant ?? E_FontVariant.Normal;
 		this.size = size ?? Number(WordArt.getDefaultFontSize(true, false));
+		this.color = color ?? new Color(0,0,0,1);
 	}
 
-	getText(): string {
-		return this.text;
-	}
+	getText(): string { return this.text; }
+	getFamily(): E_FontFamily { return this.family; }
+	getStyle(): E_FontStyle { return this.style; }
+	getWeight(): E_FontWeight { return this.weight; }
+	getVariant(): E_FontVariant { return this.variant; }
+	getSize(): number { return this.size; }
+	getColor(): Color { return this.color; }
 
-	getFamily(): E_FontFamily {
-		return this.family;
-	}
+	setText(text: string): void { this.text = text; }
+	setFamily(family: E_FontFamily): void { this.family = family;}
+	setStyle(style: E_FontStyle): void { this.style = style; }
+	setWeight(weight: E_FontWeight): void { this.weight = weight; }
+	setVariant(variant: E_FontVariant): void { this.variant = variant; }
+	setSize(size: number): void { this.size = size; }
+	setColor(color: Color): void { this.color = new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()) }
 
-	getStyle(): E_FontStyle {
-		return this.style;
-	}
-
-	getWeight(): E_FontWeight {
-		return this.weight;
-	}
-
-	getVariant(): E_FontVariant {
-		return this.variant;
-	}
-
-	getSize(): number {
-		return this.size;
-	}
-
-	getStyleString(): string {
+	toStyleString(): string {
 		return `font-family:${this.family};`
 		+ `font-style:${this.style};`
 		+ `font-weight:${this.weight};`
 		+ `font-variant:${this.variant};`
 		+ `font-size:${this.size}px;`
-	}
-
-	setText(text: string): void {
-		this.text = text;
-	}
-
-	setFamily(family: E_FontFamily): void {
-		this.family = family;
-	}
-
-	setStyle(style: E_FontStyle): void {
-		this.style = style;
-	}
-
-	setWeight(weight: E_FontWeight): void {
-		this.weight = weight;
-	}
-
-	setVariant(variant: E_FontVariant): void {
-		this.variant = variant;
-	}
-
-	setSize(size: number): void {
-		this.size = size;
+		+ `color:${this.color.toStringRGBA()};`
 	}
 
 	static getDefaultFontSize(includeNumber: boolean = true, includeUnit: boolean = true): string {
