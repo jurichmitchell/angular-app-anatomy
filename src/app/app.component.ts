@@ -20,9 +20,11 @@ export class AppComponent {
   title = 'angular-app-anatomy';
 
 	window1 = new ConsoleWindow("Test", "");
+	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30, new Color(1,1,1,0.15));
 
 	constructor() {
 		this.setupConsoleWindow();
+		this.setupWordArt();
 	}
 
 	setupConsoleWindow() {
@@ -34,6 +36,8 @@ export class AppComponent {
 		this.window1.pushWindowText("Line 2 info", E_txtType.Informative);
 		return;
 	}
-
-	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30, Color.olive);
+	
+	setupWordArt() {
+		this.wordArtLayer1.getColor().setColor(135,15,88,0.75);
+	}
 }

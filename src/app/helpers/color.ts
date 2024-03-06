@@ -1,3 +1,9 @@
+/**
+ * @author Mitchell Jurich
+ * 
+ * TODO: Make TSDoc comments for class functions, particularly constructor/setColor functions
+ */
+
 export class Color {
 	// Static variables for all CSS3 basic color keywords
 	static black = new Color(0,0,0);
@@ -21,12 +27,11 @@ export class Color {
 	private g: number = 0;
 	private b: number = 0;
 	private a: number = 1;
+	private isConstructed: boolean = false;
 
-	constructor(r:number, g:number, b:number, a:number=1) {
-		this.setRed(r);
-		this.setGreen(g);
-		this.setBlue(b);
-		this.setAlpha(a);
+	constructor(param1:(number|string)=0, param2:number=0, param3:number=0, param4:number=1) {
+		this.setColor(param1, param2, param3, param4);
+		this.isConstructed = true;
 	}
 
 	setRed(val: number) {
@@ -44,6 +49,51 @@ export class Color {
 		this.a = val < 0 ? 0 : val > 1 ? 1 : val;
 	}
 
+	setColor(param1:(number|string)=0, param2:number=0, param3:number=0, param4:number=1): void {
+		if (typeof param1 === "number") {
+			this.setRed(param1);
+			this.setGreen(param2);
+			this.setBlue(param3);
+			this.setAlpha(param4);
+		}
+		// If first parameter passed was a string, treat it as a hexadecimal
+		else if (typeof param1 === "string") {
+			let prefixStripped = param1.replace("#","").replace("0x","");
+			// Confirm only hex-appropriate values are present (0-9, A-F)
+			let invalidChars: RegExpMatchArray | null = prefixStripped.match(/[^0-9|A-F]+/g);
+			if (invalidChars !== null)
+				throw new HexCodeError(this.isConstructed
+					? `Hex code provided as parameter to setColor() function of Color object (${param1}) contains invalid character(s): ${invalidChars}.`
+					: `Hex code provided as parameter to new Color object (${param1}) contains invalid character(s): ${invalidChars}.`);
+			let fullHex: string;
+			// If shorthand hex code was used (or no Alpha value present), expand it to full hex code value
+			if (prefixStripped.length === 3) // Shorthand for RGB
+				fullHex = `${prefixStripped.charAt(0)}${prefixStripped.charAt(0)}`
+					+ `${prefixStripped.charAt(1)}${prefixStripped.charAt(1)}`
+					+ `${prefixStripped.charAt(2)}${prefixStripped.charAt(2)}`
+					+ `FF`
+			else if (prefixStripped.length === 4) // Shorthand for RGBA
+				fullHex = `${prefixStripped.charAt(0)}${prefixStripped.charAt(0)}`
+					+ `${prefixStripped.charAt(1)}${prefixStripped.charAt(1)}`
+					+ `${prefixStripped.charAt(2)}${prefixStripped.charAt(2)}`
+					+ `${prefixStripped.charAt(3)}${prefixStripped.charAt(3)}`
+			else if (prefixStripped.length === 6) // No alpha specified
+				fullHex = `${prefixStripped}FF`
+			else if (prefixStripped.length === 8) // Full hex code provided including Alpha
+				fullHex = prefixStripped;
+			else // Too many digits provided
+				throw new HexCodeError(this.isConstructed
+						? `Hex code provided as parameter to setColor() function of Color object (${param1}) contains too many digits.`
+						: `Hex code provided as parameter to new Color object (${param1}) contains too many digits.`);
+			
+				// If we reach this point, then we know that we have an 8 digit hex code available
+			this.setRed(parseInt(fullHex.substring(0, 2), 16));
+			this.setGreen(parseInt(fullHex.substring(2, 4), 16));
+			this.setBlue(parseInt(fullHex.substring(4, 6), 16));
+			this.setAlpha(parseInt(fullHex.substring(6, 8), 16)/255.0);
+		}
+	}
+
 	getRed(): number { return this.r; }
 	getGreen(): number { return this.g; }
 	getBlue(): number { return this.b; }
@@ -51,4 +101,11 @@ export class Color {
 
 	toStringRGB() { return `rgb(${this.r},${this.g},${this.b})`; }
 	toStringRGBA() { return `rgba(${this.r},${this.g},${this.b},${this.a})`; }
+}
+
+class HexCodeError extends Error {
+	constructor(message: string) {
+		super(message);
+		this.name = "HexCodeError";
+	}
 }
