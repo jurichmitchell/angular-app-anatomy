@@ -34,6 +34,11 @@ export class Color {
 		this.isConstructed = true;
 	}
 
+	getRed(): number { return this.r; }
+	getGreen(): number { return this.g; }
+	getBlue(): number { return this.b; }
+	getAlpha(): number { return this.a; }
+
 	setRed(val: number) {
 		// Clamp the value to the range 0-255 and remove any decimal points
 		this.r = val < 0 ? 0 : val > 255 ? 255 : Math.trunc(val);
@@ -60,7 +65,7 @@ export class Color {
 		else if (typeof param1 === "string") {
 			let prefixStripped = param1.replace("#","").replace("0x","");
 			// Confirm only hex-appropriate values are present (0-9, A-F)
-			let invalidChars: RegExpMatchArray | null = prefixStripped.match(/[^0-9|A-F]+/g);
+			let invalidChars: RegExpMatchArray | null = prefixStripped.match(/^[0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F]+/g);
 			if (invalidChars !== null)
 				throw new HexCodeError(this.isConstructed
 					? `Hex code provided as parameter to setColor() function of Color object (${param1}) contains invalid character(s): ${invalidChars}.`
@@ -93,11 +98,6 @@ export class Color {
 			this.setAlpha(parseInt(fullHex.substring(6, 8), 16)/255.0);
 		}
 	}
-
-	getRed(): number { return this.r; }
-	getGreen(): number { return this.g; }
-	getBlue(): number { return this.b; }
-	getAlpha(): number { return this.a; }
 
 	toStringRGB() { return `rgb(${this.r},${this.g},${this.b})`; }
 	toStringRGBA() { return `rgba(${this.r},${this.g},${this.b},${this.a})`; }

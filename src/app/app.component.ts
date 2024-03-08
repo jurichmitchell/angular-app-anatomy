@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { Color } from './helpers/color';
+import { Position, AbsolutePositionUnits, RelativePositionUnits } from './helpers/position';
 import { ConsoleWindow, ConsoleWindowComponent, E_txtType } from './components/content/console-window/console-window.component';
-import { WordArt, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './components/content/word-art/word-art.component';
+import { WordArtLayer, WordArtComponent, E_FontFamily, E_FontStyle, E_FontVariant, E_FontWeight } from './components/content/word-art/word-art.component';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,11 @@ export class AppComponent {
   title = 'angular-app-anatomy';
 
 	window1 = new ConsoleWindow("Test", "");
-	wordArtLayer1 = new WordArt("WordART!", E_FontFamily.Serif, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 30, new Color(1,1,1,0.15));
+	wordArtLayer1 = new WordArtLayer();
+	wordArtLayer2 = new WordArtLayer();
+	wordArtLayer3 = new WordArtLayer();
+	wordArtLayer4 = new WordArtLayer();
+	wordArtLayer5 = new WordArtLayer();
 
 	constructor() {
 		this.setupConsoleWindow();
@@ -38,6 +43,11 @@ export class AppComponent {
 	}
 	
 	setupWordArt() {
-		this.wordArtLayer1.getColor().setColor(135,15,88,0.75);
+		this.wordArtLayer1 = new WordArtLayer("<WordArt>", E_FontFamily.Monospace, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 60, Color.black);
+		this.wordArtLayer2 = new WordArtLayer("<WordArt>", E_FontFamily.Monospace, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 45, new Color(250, 230, 10, 0.75), new Position(35, 0, 0, -8, AbsolutePositionUnits.px));
+		this.wordArtLayer3 = new WordArtLayer("<WordArt>", E_FontFamily.Monospace, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 40, new Color(220, 30, 10, 0.8), new Position(-14, 0, 0, 20, AbsolutePositionUnits.px));
+		this.wordArtLayer4 = new WordArtLayer("<WordArt>", E_FontFamily.Monospace, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 50, new Color(5, 15, 190, 0.6), new Position(-8, 0, 0, 90, AbsolutePositionUnits.px));
+		this.wordArtLayer5 = new WordArtLayer("<WordArt>", E_FontFamily.Monospace, E_FontStyle.Normal, E_FontWeight.Normal, E_FontVariant.Normal, 60, new Color(200, 200, 200, 1), new Position(3, 0, 0, 3, AbsolutePositionUnits.px));
+		return;
 	}
 }
