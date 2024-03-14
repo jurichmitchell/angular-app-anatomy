@@ -2,14 +2,15 @@
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
+	background-color: rgb(12, 12, 12);
+	border-radius: 10px 10px 10px 10px;
 }
 .titlebar {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	background-color: rgb(32, 32, 32);
-	border-radius: 10px 10px 0px 0px;
+	background-color: rgba(255, 255, 255, 0.25);
 	color: white;
 }
 .titlebar .title {
@@ -42,22 +43,18 @@
 .close-ico span {
 	font-size: 13pt;
 }
-.window-text {
-	background-color: rgb(12, 12, 12);
-	border-radius: 0px 0px 10px 10px;
-}
 .window-text .command {
 	border-radius: 0px 0px 10px 10px;
 	padding: 3px 20px 5px 20px;
-	color: rgb(200, 200, 220);
+	color: rgb(200, 200, 200);
 	font-family: "Source Code Pro";
 	font-size: 12pt;
 }
 .window-text .informative {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(255, 255, 255, 0.25);
 	margin: 0px -20px;
 	padding: .5em 20px .5em 40px;
-	color: black;
+	color: rgb(200, 200, 200);
 	font-family: "Times New Roman";
 	font-size: 12pt;
 }

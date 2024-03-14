@@ -7,7 +7,7 @@
  * TODO: Another idea is to have the alt text specify the amount of the page the piece takes up "A large piece of stylized text with..."
  */
 
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { Color } from '../../../helpers/color';
@@ -22,12 +22,13 @@ import { HTMLSanitizer } from '../../../pipes/html-sanitizer';
 		, NgIf
 	],
   template: `
-		<div style="position: relative;">
-			<span *ngIf="layer1" [style]="'position: absolute; user-select: none; ' + layer1.toStyleString() | htmlSanitizer">{{ layer1.getText() }}</span>
-			<span *ngIf="layer2" [style]="'position: absolute; z-index:-1; user-select: none; ' + layer2.toStyleString() | htmlSanitizer">{{ layer2.getText() }}</span>
-			<span *ngIf="layer3" [style]="'position: absolute; z-index:-2; user-select: none; ' + layer3.toStyleString() | htmlSanitizer">{{ layer3.getText() }}</span>
-			<span *ngIf="layer4" [style]="'position: absolute; z-index:-3; user-select: none; ' + layer4.toStyleString() | htmlSanitizer">{{ layer4.getText() }}</span>
-			<span *ngIf="layer5" [style]="'position: absolute; z-index:-4; user-select: none; ' + layer5.toStyleString() | htmlSanitizer">{{ layer5.getText() }}</span>
+		<div>
+			<span *ngIf="layer1" [style]="'position: relative; user-select: none; ' + layer1.toStyleString() | htmlSanitizer">{{ layer1.getText() }}
+				<span *ngIf="layer2" [style]="'position: absolute; z-index:-1; user-select: none; ' + layer2.toStyleString() | htmlSanitizer">{{ layer2.getText() }}</span>
+				<span *ngIf="layer3" [style]="'position: absolute; z-index:-2; user-select: none; ' + layer3.toStyleString() | htmlSanitizer">{{ layer3.getText() }}</span>
+				<span *ngIf="layer4" [style]="'position: absolute; z-index:-3; user-select: none; ' + layer4.toStyleString() | htmlSanitizer">{{ layer4.getText() }}</span>
+				<span *ngIf="layer5" [style]="'position: absolute; z-index:-4; user-select: none; ' + layer5.toStyleString() | htmlSanitizer">{{ layer5.getText() }}</span>
+			</span>
 		</div>
   `,
   styleUrl: './word-art.component.css'
@@ -73,6 +74,7 @@ export class WordArtLayer {
 	private size: number = 0;
 	private color: Color;
 	private position: Position;
+	private modifyFlow: boolean = true; //TODO: implement the ability to calculate the wordart component's size in dom including absolutely positioned elements
 
 	constructor(text?: string, family?: E_FontFamily, style?: E_FontStyle, weight?: E_FontWeight, variant?: E_FontVariant, size?: number, color?: Color, position?: Position) {
 		this.text = text ?? "";
